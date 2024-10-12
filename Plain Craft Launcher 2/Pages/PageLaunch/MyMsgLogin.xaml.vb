@@ -89,7 +89,7 @@
             $"登录网页将自动开启，请在网页中输入 {UserCode}（已自动复制）。" & vbCrLf & vbCrLf &
             $"如果网络环境不佳，网页可能一直加载不出来，届时请使用 VPN 并重试。" & vbCrLf &
             $"你也可以用其他设备打开 {Website} 并输入上述代码。"
-        Btn1.EventData = "https://localhost:8000/api/account/login?otc=" + UserCode
+        Btn1.EventData = "http://localhost:8000/api/account/login?otc=" + UserCode
         Btn2.EventData = UserCode
         '启动工作线程
         RunInNewThread(AddressOf WorkThread, "MyMsgLogin")
@@ -98,7 +98,7 @@
     Private Sub WorkThread()
         Thread.Sleep(3000)
         If MyConverter.IsExited Then Exit Sub
-        OpenWebsite(Website)
+        OpenWebsite("http://localhost:8000/api/account/login?otc=" + UserCode)
         ClipboardSet(UserCode)
         Thread.Sleep((Data("interval").ToObject(Of Integer) - 1) * 1000)
         '轮询
