@@ -1,9 +1,5 @@
 name: Build
 on:
-  push:
-    paths:
-      - 'Plain Craft Launcher 2/**'
-      - '.github/workflows/**'
   pull_request:
     paths:
       - 'Plain Craft Launcher 2/**'
