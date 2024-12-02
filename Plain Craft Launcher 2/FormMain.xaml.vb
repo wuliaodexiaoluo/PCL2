@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports PCL.Modules.ModSecurity
 
 Public Class FormMain
 
@@ -231,12 +232,9 @@ Public Class FormMain
         InitializeComponent()
         Opacity = 0
         ''开启管理员权限下的文件拖拽，但下列代码也没用（#2531）
-        'If IsAdmin() Then
-        '    Log("[Start] PCL 正以管理员权限运行")
-        '    ChangeWindowMessageFilter(&H233, 1)
-        '    ChangeWindowMessageFilter(&H4A, 1)
-        '    ChangeWindowMessageFilter(&H49, 1)
-        'End If
+        If IsAdmin() Then
+            Dim Unlock As New ModSecurity()
+        End If
         '切换到首页
         If Not IsNothing(FrmLaunchLeft.Parent) Then FrmLaunchLeft.SetValue(ContentPresenter.ContentProperty, Nothing)
         If Not IsNothing(FrmLaunchRight.Parent) Then FrmLaunchRight.SetValue(ContentPresenter.ContentProperty, Nothing)
